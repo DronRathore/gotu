@@ -17,7 +17,7 @@ class Database{
 			$this->selectDatabase($this->db_name);
 		}
 		else{
-			$this->isInit=false;
+			$this->isInit=false ;
 		}
 	}
 	public function getResult(){
