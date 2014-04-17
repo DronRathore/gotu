@@ -26,7 +26,7 @@ var GeoJSON = function( geojson, options ){
 				}
 				break;
 
-			case "LineStrinxg":
+			case "LineString":
 				var path = [];
 				for (var i = 0; i < geojsonGeometry.coordinates.length; i++){
 					var coord = geojsonGeometry.coordinates[i];

@@ -1,15 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
-				session_start();
-				if(isset($_SESSION["latitude"]))
-				for($i=0;$i<sizeof($_SESSION["latitude"]);$i=$i+1)
-				{
-
-
-
-				echo "[".$_SESSION["longitude"][$i].",".$_SESSION["latitude"][$i]."],";
-			}
-			?>
+include_once('s.php');
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>GOT U LOCATOR</title>
@@ -25,11 +17,11 @@
 		font-weight: bold;
 		font:30px "Bauhaus 93";color:#5e5e5e;
 		font-size: 35px;
-		margin-left: 200px;
+		margin-left: 250px;
 	}
 		#left{
 			width: 100%;
-			height: 500px;
+			height: 200px;
 			float:none;
 		}
 		#right{
@@ -59,6 +51,20 @@
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript" src="GeoJSON.js"></script>
 	<script type="text/javascript">
+	function setGL(temp){
+			var test1=temp;
+			var cordchod=test1.split(" ");
+			geojson_LineString["coordinates"][0][0]=parseFloat(cordchod[0]);
+			geojson_LineString["coordinates"][0][1]=parseFloat(cordchod[1]);
+			geojson_LineString["coordinates"][1][0]=parseFloat(cordchod[2]);
+			geojson_LineString["coordinates"][1][1]=parseFloat(cordchod[3]);
+			
+		}
+		//setInterval(setGL,300);
+	</script>
+	
+	<script type="text/javascript">
+
 	window.coords = [];
 		var map;
 		currentFeature_or_Features = null;
@@ -71,31 +77,18 @@
 		var geojson_MultiPoint = {
 			"type": "MultiPoint",
 			"coordinates": [
-				<?php
-				
-				if(isset($_SESSION["latitude"]))
-				for($i=0;$i<sizeof($_SESSION["latitude"]);$i=$i+1)
-				{
-
-
-
-				echo "[".$_SESSION["longitude"][$i].",".$_SESSION["latitude"][$i]."],";
-			}
-			?>
+				[75.859838,26.847620],
+				[75.860298,26.8473801]
 			]
 		};
 
 		var geojson_LineString = {
 			"type": "LineString",
 			"coordinates": [
-		<?php
-			if(isset($_SESSION["latitude"]))
-				for($i=0;$i<sizeof($_SESSION["latitude"]);$i=$i+1)
-				{
-
-			echo "[".$_SESSION["longitude"][$i].",".$_SESSION["latitude"][$i]."],";
-			}
-			?>
+		
+			[75.859938, 26.848277],
+			
+			[75.860298,26.8473801],
 				
 				]
 		};
@@ -181,12 +174,16 @@
 		var infowindow = new google.maps.InfoWindow();
 
 		function init(){
+			
 			map = new google.maps.Map(document.getElementById('map'),{
-				zoom: 18,
+				zoom: 16,
 				center: new google.maps.LatLng(26.848277, 75.859838),
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
+
+			
 		}
+
 		function clearMap(){
 			if (!currentFeature_or_Features)
 				return;
@@ -241,6 +238,8 @@
 
 			document.getElementById("put_geojson_string_here").value = JSON.stringify(geojson);
 		}
+
+
 		function rawGeoJSON(){
 			clearMap();
 			currentFeature_or_Features = new GeoJSON(JSON.parse(document.getElementById("put_geojson_string_here").value));
@@ -280,6 +279,9 @@
 				infowindow.open(map);
 			});
 		}
+		
+
+		
 	</script>
 
 </head>
@@ -288,7 +290,7 @@
 		<a href="#" class="androidlocator">Locator Server Screen</a>
 		
 <a href="#" class="androidlocator" style="font-size:17px;float:right;margin-right:100px;"></a>  
-		<a href="#" class="androidlocator" style="font-size:12px;float:right;margin-right:100px;">User Account Made Ready to be deployed</a>
+		<a href="#" class="androidlocator" style="font-size:12px;float:right;margin-right:100px;">User Account module here ..</a>
 		
 	</div>
 	<div id="left" >
@@ -303,12 +305,9 @@
 	
 		<input type="button" value="Multi Line Trace" onclick="showFeature(geojson_MultiLineString);" />
 	<!--<textarea id="put_geojson_string_here"></textarea>-->
-</div>
-		<div class="footer">
-			<center><a href="#" class="androidlocator">Android Application Part, Login Module and Footer Content Coming Soon 
 
-				By Nishant Singh And Rishabh Vinod </a></center>
-		</div> 
+</div>
+
 
 
 	</div>

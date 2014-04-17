@@ -117,9 +117,12 @@ JSON={
 			}
 		}
 	}
+
 };
 	</script>
 	<script>
+	var mohit="";
+	var temp;
 	window.loading =false;
 	window.stop = false;
 	function test(){
@@ -127,40 +130,24 @@ JSON={
 	window.loading = true;
 	var a = new Ajax("./ajax.php", "GET");
 	a.send(function(xhr){
-		document.getElementById("msgs").innerHTML = xhr.responseText;
+		
+		//document.getElementById("msgs").innerHTML = xhr.responseText;
+		mohit+=xhr.responseText;
+		setGL(mohit);
+		
 		window.loading =false;
 	});
 	}
 	}
-	setInterval(test, 13000);
+	
+	setInterval(test, 300);
 	</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	</head>	
-
-<body >
-	
-
-<div id="msgs">
+	</head>
+<body>
+	I was already here, so dont blame me 
+	<div id="msgs">
 	</div>
-
 	
-</body>
 
+</body>
 </html>
