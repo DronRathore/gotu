@@ -21,7 +21,7 @@ include_once('s.php');
 	}
 		#left{
 			width: 100%;
-			height: 200px;
+			height: 500px;
 			float:none;
 		}
 		#right{
@@ -59,6 +59,14 @@ include_once('s.php');
 			geojson_LineString["coordinates"][1][0]=parseFloat(cordchod[2]);
 			geojson_LineString["coordinates"][1][1]=parseFloat(cordchod[3]);
 			
+			console.log("co-ordinates: "+geojson_LineString["coordinates"][0][0]+" "+geojson_LineString["coordinates"][0][1]+" "+geojson_LineString["coordinates"][1][0]+" "+geojson_LineString["coordinates"][1][1]+" ");
+			try{
+				showFeature(geojson_LineString);
+			}
+			catch(err){
+
+
+			}
 		}
 		//setInterval(setGL,300);
 	</script>
@@ -176,7 +184,7 @@ include_once('s.php');
 		function init(){
 			
 			map = new google.maps.Map(document.getElementById('map'),{
-				zoom: 16,
+				zoom: 18,
 				center: new google.maps.LatLng(26.848277, 75.859838),
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
@@ -206,7 +214,7 @@ include_once('s.php');
 			}
 		}
 		function showFeature(geojson, style){
-			clearMap();
+			//clearMap();
 			currentFeature_or_Features = new GeoJSON(geojson, style || null);
 			if (currentFeature_or_Features.type && currentFeature_or_Features.type == "Error"){
 				document.getElementById("put_geojson_string_here").value = currentFeature_or_Features.message;
@@ -279,9 +287,6 @@ include_once('s.php');
 				infowindow.open(map);
 			});
 		}
-		
-
-		
 	</script>
 
 </head>

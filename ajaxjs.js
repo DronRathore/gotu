@@ -1,8 +1,4 @@
-<!doctype html>
-<html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-	<script>
+<script>
 	function Ajax(url,method,element) {
 	if(this==window)
 		return new Ajax(url,method);
@@ -117,12 +113,10 @@ JSON={
 			}
 		}
 	}
-
 };
 	</script>
 	<script>
-	var mohit="";
-	var temp;
+	var mohit;
 	window.loading =false;
 	window.stop = false;
 	function test(){
@@ -130,25 +124,13 @@ JSON={
 	window.loading = true;
 	var a = new Ajax("./ajax.php", "GET");
 	a.send(function(xhr){
-		
-		//document.getElementById("msgs").innerHTML = xhr.responseText;
-		mohit=xhr.responseText;
-		console.log("Mohit:"+mohit);
-		setGL(mohit);
-		
+		document.getElementById("msgs").innerHTML = xhr.responseText;
+			mohit=xhr.responseText;
+			
+
 		window.loading =false;
 	});
 	}
 	}
-	
 	setInterval(test, 300);
 	</script>
-	</head>
-<body>
-	I was already here, so dont blame me 
-	<div id="msgs">
-	</div>
-	
-
-</body>
-</html>
