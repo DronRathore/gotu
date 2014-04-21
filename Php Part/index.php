@@ -58,16 +58,34 @@ include_once('s.php');
 			geojson_LineString["coordinates"][0][1]=parseFloat(cordchod[1]);
 			geojson_LineString["coordinates"][1][0]=parseFloat(cordchod[2]);
 			geojson_LineString["coordinates"][1][1]=parseFloat(cordchod[3]);
+			//console.log("co-ordinates:" +geojson_Point["coordinates"][0][0]+" "+geojson_Point["coordinates"][0][1]);
+			//locate user where he /she is ??
 			
+			geojson_Point["coordinates"][0]=parseFloat(cordchod[0]);
+			geojson_Point["coordinates"][1]=parseFloat(cordchod[1]);
+			console.log("co-ordinates:" +geojson_Point["coordinates"][0]+" "+geojson_Point["coordinates"][1]);
 			console.log("co-ordinates: "+geojson_LineString["coordinates"][0][0]+" "+geojson_LineString["coordinates"][0][1]+" "+geojson_LineString["coordinates"][1][0]+" "+geojson_LineString["coordinates"][1][1]+" ");
 			try{
+				
 				showFeature(geojson_LineString);
+				//showFeature(geojson_Point);
 			}
-			catch(err){
-
+			catch(err){	
 
 			}
+			try{
+				
+				//showFeature(geojson_LineString);
+				//clearMap();
+				showFeature(geojson_Point);
+			}
+			catch(err){	
+
+			}
+
+			
 		}
+
 		//setInterval(setGL,300);
 	</script>
 	
@@ -89,14 +107,14 @@ include_once('s.php');
 				[75.860298,26.8473801]
 			]
 		};
-
+//75.859838 26.848277
 		var geojson_LineString = {
 			"type": "LineString",
 			"coordinates": [
 		
-			[75.859938, 26.848277],
+			[0,0],
 			
-			[75.860298,26.8473801],
+			[75,26],
 				
 				]
 		};
@@ -295,21 +313,21 @@ include_once('s.php');
 		<a href="#" class="androidlocator">Locator Server Screen</a>
 		
 <a href="#" class="androidlocator" style="font-size:17px;float:right;margin-right:100px;"></a>  
-		<a href="#" class="androidlocator" style="font-size:12px;float:right;margin-right:100px;">User Account module here ..</a>
+		<a href="#" class="androidlocator" style="font-size:12px;float:right;margin-right:100px;">testing Mode... Version1.1 released see the code @ http://github.com/creater008/gotu</a>
 		
 	</div>
 	<div id="left" >
 		<div id="map" ></div>
 	</div>
 	<div id="right">
-		<input type="button" value="One device" onclick="showFeature(geojson_Point);" />
+		<!--<input type="button" value="One device" onclick="showFeature(geojson_Point);" />
 		
 		<input type="button" value="Multi Device" onclick="showFeature(geojson_MultiPoint);" >
 	
 		<input type="button" value="Single line trace" onclick="showFeature(geojson_LineString);" />
 	
 		<input type="button" value="Multi Line Trace" onclick="showFeature(geojson_MultiLineString);" />
-	<!--<textarea id="put_geojson_string_here"></textarea>-->
+	<textarea id="put_geojson_string_here"></textarea>-->
 
 </div>
 
