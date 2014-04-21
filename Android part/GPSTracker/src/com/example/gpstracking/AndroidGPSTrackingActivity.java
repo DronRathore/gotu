@@ -20,8 +20,10 @@ public class AndroidGPSTrackingActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        String p_lat=new String();
+		String p_long=new String();
         while (true)
-        {
+        {		
 
                 gps = new GPSTracker(AndroidGPSTrackingActivity.this);
                 if(gps.canGetLocation()){
@@ -29,15 +31,20 @@ public class AndroidGPSTrackingActivity extends Activity {
                     double longitude = gps.getLongitude();
                     String lat=String.valueOf(latitude);
                     String lon=String.valueOf(longitude);
-                    ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
-                    postParameters.add(new BasicNameValuePair("latitude", lat));
-                    postParameters.add(new BasicNameValuePair("longitude", lon));
-                    try {   
-                        CustomHttpClient.executeHttpPost("http://geekved.com/games/getgpsdata.php", postParameters);
-                    } catch (Exception e) { 
+                    if(!(p_lat.equals(lat) && p_long.equals(lon))){
+                    	ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
+                    	postParameters.add(new BasicNameValuePair("latitude", lat));
+                    	postParameters.add(new BasicNameValuePair("longitude", lon));
+                    	try {   
+                    		CustomHttpClient.executeHttpPost("http://geekved.com/games/getgpsdata.php", postParameters);
+                    	} catch (Exception e) { 
+                    	}
+                    	tmplat=latitude;
+                    	tmplong=longitude; 
                     }
-                    tmplat=latitude;
-                    tmplong=longitude;  
+                    p_lat=lat;
+                    p_long=lon;
+                    
 
                 }
 
