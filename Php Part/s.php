@@ -133,8 +133,9 @@ JSON={
 		
 		//document.getElementById("msgs").innerHTML = xhr.responseText;
 		mohit=xhr.responseText;
-		console.log("Mohit:"+mohit);
+		//console.log("Mohit:"+mohit);
 		setGL(mohit);
+
 		
 		window.loading =false;
 	});
@@ -145,9 +146,7 @@ JSON={
 	</script>
 	</head>
 <body>
-	I was already here, so dont blame me 
-	<div id="msgs">
-	</div>
+	
 	
 
 </body>
