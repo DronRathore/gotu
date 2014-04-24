@@ -9,7 +9,7 @@ include_once('s.php');
 	body{margin:0px;
 			padding: 0px; 
 		}
-	.top{background: #a6f9ea;
+	.top{background: #fff;
 		width: 100%;
 		height: 80px;
 	}
@@ -21,7 +21,7 @@ include_once('s.php');
 	}
 		#left{
 			width: 100%;
-			height: 500px;
+			height: 480px;
 			float:none;
 		}
 		#right{
